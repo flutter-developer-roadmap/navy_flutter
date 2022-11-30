@@ -12,13 +12,15 @@ class SecondPage extends StatefulWidget {
 class _SecondPageState extends State<SecondPage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: ElevatedButton(
-        onPressed: (){
-          Navigator.pop(context);
-        },
-        child: Text("Tela 1")
-      ))
+    return Scaffold(
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text("Tela 1"),
+        ),
+      ),
     );
   }
 }
