@@ -1,31 +1,26 @@
 import 'package:flutter/material.dart';
 
-import 'second_page.dart';
-
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
-
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
   @override
-  State<StatefulWidget> createState() {
-    return _HomePageState();
+  State<MyHomePage> createState() {
+    return _MyHomePage();
   }
 }
 
-class _HomePageState extends State<HomePage> {
+class _MyHomePage extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Page One :)'),
+      ),
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            Navigator.push<void>(
-              context,
-              MaterialPageRoute<void>(
-                builder: (context) => const SecondPage(),
-              ),
-            );
+            Navigator.pushNamed(context, '/second');
           },
-          child: const Text("Tela 2"),
+          child: const Text('Push to go'),
         ),
       ),
     );
