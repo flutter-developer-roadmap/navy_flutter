@@ -12,6 +12,7 @@ class PageThree extends StatefulWidget {
 class _SecondPageState extends State<PageThree> {
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as List<String>;
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.pink,
@@ -29,9 +30,19 @@ class _SecondPageState extends State<PageThree> {
               ),
             ),
             ElevatedButton(
-              onPressed: () => {Navigator.pop(context, '/')},
+              onPressed: () {
+                Navigator.pushNamedAndRemoveUntil(
+                    context, '/', ModalRoute.withName('/'),
+                    arguments: args);
+              },
               child: const Text('Back to Home Page'),
-            )
+            ),
+            ElevatedButton(
+              onPressed: () {
+                args.clear();
+              },
+              child: const Text("Remove All"),
+            ),
           ],
         ));
   }

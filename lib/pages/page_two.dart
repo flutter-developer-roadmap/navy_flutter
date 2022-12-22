@@ -12,6 +12,8 @@ class PageTwo extends StatefulWidget {
 class _SecondPageState extends State<PageTwo> {
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as List<String>;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.amber,
@@ -28,10 +30,17 @@ class _SecondPageState extends State<PageTwo> {
             child: const Text("Push to get Back"),
           )),
           ElevatedButton(
-              onPressed: () => {
-                    Navigator.pushNamed(context, '/third'),
-                  },
-              child: const Text('Push to Page Three'))
+            onPressed: () {
+              Navigator.pushNamed(context, '/third', arguments: args);
+            },
+            child: const Text('Push to Page Three'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              args.addAll(["salt", "more salt", "water"]);
+            },
+            child: const Text("Add"),
+          ),
         ],
       ),
     );

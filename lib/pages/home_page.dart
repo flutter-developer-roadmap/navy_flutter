@@ -9,19 +9,40 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePage extends State<MyHomePage> {
+  List<String>? listofthings;
+  @override
+  void initState() {
+    super.initState();
+    listofthings = [];
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    listofthings =
+        (ModalRoute.of(context)?.settings.arguments as List<String>?) ?? [];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Page One :)'),
       ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/second');
-          },
-          child: const Text('Push to go'),
-        ),
+      body: ListView(
+        scrollDirection: Axis.vertical,
+        children: [
+          Center(
+            heightFactor: 5.0,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, '/second',
+                    arguments: listofthings);
+              },
+              child: const Text('Push to next Page'),
+            ),
+          ),
+        ],
       ),
     );
   }
